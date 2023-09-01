@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <link rel="stylesheet" href="../static/style.css"> <!-- Link to your external CSS file -->
+
+</head>
+<body>
+
+    <div class="container">
+        <div class="form-container">
+            <h1>Hit predictor</h1>
+
+            <p>danceability</p><input type="checkbox" id="danceability-filter">
+            <input type="range" id="danceability-slider">
+        
+            <p>energy</p><input type="checkbox" id="energy-filter">
+            <input type="range" id="energy-slider">
+        
+            <p>key</p><input type="checkbox" id="key-filter">
+            <input type="range" id="key-slider">
+        
+            <p>loudness</p><input type="checkbox" id="loudness-filter">
+            <input type="range" id="loudness-slider">
+        
+            <p>mode</p><input type="checkbox" id="mode-filter">
+            <input type="range" id="mode-slider">
+        
+            <p>speechiness</p><input type="checkbox" id="speechiness-filter">
+            <input type="range" id="speechiness-slider">
+        
+            <p>acousticness</p><input type="checkbox" id="acousticness-filter">
+            <input type="range" id="acousticness-slider">
+        
+            <p>instrumentalness</p><input type="checkbox" id="instrumentalness-filter">
+            <input type="range" id="instrumentalness-slider">
+        
+            <p>liveness</p><input type="checkbox" id="liveness-filter">
+            <input type="range" id="liveness-slider">
+        
+            <p>valence</p><input type="checkbox" id="valence-filter">
+            <input type="range" id="valence-slider">
+        
+            <p>tempo</p><input type="checkbox" id="tempo-filter">
+            <input type="range" id="tempo-slider">
+        
+            <p>duration_ms</p><input type="checkbox" id="duration_ms-filter">
+            <input type="range" id="duration_ms-slider">
+        
+            <p>time_signature</p><input type="checkbox" id="time_signature-filter">
+            <input type="range" id="time_signature-slider">
+        
+            <p>chorus_hit</p><input type="checkbox" id="chorus_hit-filter">
+            <input type="range" id="chorus_hit-slider">
+        
+            <p>sections</p><input type="checkbox" id="sections-filter">
+            <input type="range" id="sections-slider">
+        
+        </div>
+        <div class="songs-container" id="filtered-songs">
+
+        </div>
+    </div>
+
+    <script src="../static/logic.js"></script>
+</body>
+</html>

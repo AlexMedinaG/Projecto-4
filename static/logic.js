@@ -1,14 +1,14 @@
-console.log("Hello from logic.js");
+console.log("Just checking if logic.js is working");
 
 // Define the API URL
 let url = 'http://127.0.0.1:5503/api';
 
-// Get references to HTML elements
+// Get references for html elements
 const danceabilitySlider = document.getElementById("danceability-slider");
 const energySlider = document.getElementById("energy-slider");
-const keySlider = document.getElementById("key-slider");
+const keyDropdown = document.getElementById("key-dropdown");
 const loudnessSlider = document.getElementById("loudness-slider");
-const modeSlider = document.getElementById("mode-slider");
+const modeDropdown = document.getElementById("mode-dropdown");
 const speechinessSlider = document.getElementById("speechiness-slider");
 const acousticnessSlider = document.getElementById("acousticness-slider");
 const instrumentalnessSlider = document.getElementById("instrumentalness-slider");
@@ -16,15 +16,14 @@ const livenessSlider = document.getElementById("liveness-slider");
 const valenceSlider = document.getElementById("valence-slider");
 const tempoSlider = document.getElementById("tempo-slider");
 const duration_msSlider = document.getElementById("duration_ms-slider");
-const time_signatureSlider = document.getElementById("time_signature-slider");
+const timeSignatureDropdown = document.getElementById("time_signature-dropdown");
 const chorus_hitSlider = document.getElementById("chorus_hit-slider");
 const sectionsSlider = document.getElementById("sections-slider");
-const valueLabel = document.createElement("span");
-valueLabel.textContent = `Danceability: ${danceabilitySlider.value}, Energy: ${energySlider.value}, Key: ${keySlider.value}, Loudness: ${loudnessSlider.value}, 
-Mode: ${modeSlider.value}, Speechiness: ${speechinessSlider.value}, Acousticness: ${acousticnessSlider.value}, Instrumentalness: ${instrumentalnessSlider.value},
+const valueLabel = document.getElementById("value-label");
+valueLabel.textContent = `Danceability: ${danceabilitySlider.value}, Energy: ${energySlider.value}, Key: ${keyDropdown.value}, Loudness: ${loudnessSlider.value}, 
+Mode: ${modeDropdown.value}, Speechiness: ${speechinessSlider.value}, Acousticness: ${acousticnessSlider.value}, Instrumentalness: ${instrumentalnessSlider.value},
 Liveness: ${livenessSlider.value}, Mode: ${valenceSlider.value}, Speechiness: ${tempoSlider.value}, Acousticness: ${duration_msSlider.value},
-Time_signature: ${time_signatureSlider.value}, Chorus_hit: ${chorus_hitSlider.value}, Sections: ${sectionsSlider.value}`;
-document.body.appendChild(valueLabel);
+Time_signature: ${timeSignatureDropdown.value}, Chorus_hit: ${chorus_hitSlider.value}, Sections: ${sectionsSlider.value}`;
 
 // Fetch data using D3.json
 d3.json(url).then(data => {
@@ -33,9 +32,9 @@ d3.json(url).then(data => {
     // Extract min and max values for different attributes
     const danceabilityValues = data.map(song => song.danceability);
     const energyValues = data.map(song => song.energy);
-    const keyValues = data.map(song => song.key);
+    const uniqueKeyValues = [...new Set(data.map(song => song.key))];
     const loudnessValues = data.map(song => song.loudness);
-    const modeValues = data.map(song => song.mode);
+    const uniqueModeValues = [...new Set(data.map(song => song.mode))];
     const speechinessValues = data.map(song => song.speechiness);
     const acousticnessValues = data.map(song => song.acousticness);
     const instrumentalnessValues = data.map(song => song.instrumentalness);
@@ -43,7 +42,7 @@ d3.json(url).then(data => {
     const valenceValues = data.map(song => song.valence);
     const tempoValues = data.map(song => song.tempo);
     const duration_msValues = data.map(song => song.duration_ms);
-    const time_signatureValues = data.map(song => song.time_signature);
+    const uniqueTimeSignatureValues = [...new Set(data.map(song => song.time_signature))];
     const chorus_hitValues = data.map(song => song.chorus_hit);
     const sectionsValues = data.map(song => song.sections);
 
@@ -51,12 +50,8 @@ d3.json(url).then(data => {
     const maxDanceability = Math.max(...danceabilityValues);
     const minEnergy = Math.min(...energyValues);
     const maxEnergy = Math.max(...energyValues);
-    const minKey = Math.min(...keyValues);
-    const maxKey = Math.max(...keyValues);
     const minLoudness = Math.min(...loudnessValues);
-    const maxLoudness = Math.max(...loudnessValues);
-    const minMode = Math.min(...modeValues);
-    const maxMode = Math.max(...modeValues);
+    const maxLoudness = Math.max(...loudnessValues)
     const minSpeechiness = Math.min(...speechinessValues);
     const maxSpeechiness = Math.max(...speechinessValues);
     const minAcousticness = Math.min(...acousticnessValues);
@@ -71,8 +66,6 @@ d3.json(url).then(data => {
     const maxTempo = Math.max(...tempoValues);
     const minDuration_ms = Math.min(...duration_msValues);
     const maxDuration_ms = Math.max(...duration_msValues);
-    const minTime_signature = Math.min(...time_signatureValues);
-    const maxTime_signature = Math.max(...time_signatureValues);
     const minChorus_hit = Math.min(...chorus_hitValues);
     const maxChorus_hit = Math.max(...chorus_hitValues);
     const minSections = Math.min(...sectionsValues);
@@ -85,15 +78,9 @@ d3.json(url).then(data => {
     energySlider.min = minEnergy;
     energySlider.max = maxEnergy;
     energySlider.step = 0.01;
-    keySlider.min = minKey;
-    keySlider.max = maxKey;
-    keySlider.step = 1;
     loudnessSlider.min = minLoudness;
     loudnessSlider.max = maxLoudness;
     loudnessSlider.step = 1;
-    modeSlider.min = minMode;
-    modeSlider.max = maxMode;
-    modeSlider.step = 1;
     speechinessSlider.min = minSpeechiness;
     speechinessSlider.max = maxSpeechiness;
     speechinessSlider.step = 0.01;
@@ -115,9 +102,6 @@ d3.json(url).then(data => {
     duration_msSlider.min = minDuration_ms;
     duration_msSlider.max = maxDuration_ms;
     duration_msSlider.step = 15000;
-    time_signatureSlider.min = minTime_signature;
-    time_signatureSlider.max = maxTime_signature;
-    time_signatureSlider.step = 1;
     chorus_hitSlider.min = minChorus_hit;
     chorus_hitSlider.max = maxChorus_hit;
     chorus_hitSlider.step = 15;
@@ -125,8 +109,26 @@ d3.json(url).then(data => {
     sectionsSlider.max = maxSections;
     sectionsSlider.step = 1;
 
-    // Event listener for slider changes
-    const handleSliderChange = () => {
+    uniqueKeyValues.forEach(value => {
+        const option = document.createElement("option");
+        option.value = value;
+        option.textContent = value;
+        keyDropdown.appendChild(option);
+    });
+    uniqueModeValues.forEach(value => {
+        const option = document.createElement("option");
+        option.value = value;
+        option.textContent = value;
+        modeDropdown.appendChild(option);
+    });
+    uniqueTimeSignatureValues.forEach(value => {
+        const option = document.createElement("option");
+        option.value = value;
+        option.textContent = value;
+        timeSignatureDropdown.appendChild(option);
+    });
+
+    const handleSelectorChange = () => {
         const percentage = 0.3; // Adjust this percentage as needed
 
         const danceabilityFilterOn = document.getElementById("danceability-filter").checked;
@@ -147,9 +149,9 @@ d3.json(url).then(data => {
 
         const selectedDanceability = parseFloat(danceabilitySlider.value);
         const selectedEnergy = parseFloat(energySlider.value);
-        const selectedKey = parseFloat(keySlider.value);
+        const selectedKey = parseFloat(keyDropdown.value);
         const selectedLoudness = parseFloat(loudnessSlider.value);
-        const selectedMode = parseFloat(modeSlider.value);
+        const selectedMode = parseFloat(modeDropdown.value);
         const selectedSpeechiness = parseFloat(speechinessSlider.value);
         const selectedAcousticness = parseFloat(acousticnessSlider.value);
         const selectedInstrumentalness = parseFloat(instrumentalnessSlider.value);
@@ -157,19 +159,16 @@ d3.json(url).then(data => {
         const selectedValence = parseFloat(valenceSlider.value);
         const selectedTempo = parseFloat(tempoSlider.value);
         const selectedDuration_ms = parseFloat(duration_msSlider.value);
-        const selectedTime_signature = parseFloat(time_signatureSlider.value);
+        const selectedTime_signature = parseFloat(modeDropdown.value);
         const selectedChorus_hit = parseFloat(chorus_hitSlider.value);
         const selectedSections = parseFloat(sectionsSlider.value);
     
         valueLabel.textContent = `Danceability: ${selectedDanceability}, Energy: ${selectedEnergy}, Key: ${selectedKey}, Loudness: ${selectedLoudness}, Mode: ${selectedMode}, Speechiness: ${selectedSpeechiness}, Acousticness: ${selectedAcousticness}, Instrumentalness: ${selectedInstrumentalness}, Liveness: ${selectedLiveness}, Valence: ${selectedValence}, Tempo: ${selectedTempo}, Duration_ms: ${selectedDuration_ms}, Time_signature: ${selectedTime_signature}, Chorus_hit: ${selectedChorus_hit}, Sections: ${selectedSections}`;
 
-
         // Calculate the ranges based on percentage
         const danceabilityRange = percentage * (maxDanceability - minDanceability);
         const energyRange = percentage * (maxEnergy - minEnergy);
-        const keyRange = percentage * (maxKey - minKey);
         const loudnessRange = percentage * (maxLoudness - minLoudness);
-        const modeRange = percentage * (maxMode - minMode);
         const speechinessRange = percentage * (maxSpeechiness - minSpeechiness);
         const acousticnessRange = percentage * (maxAcousticness - minAcousticness);
         const instrumentalnessRange = percentage * (maxInstrumentalness - minInstrumentalness);
@@ -177,7 +176,6 @@ d3.json(url).then(data => {
         const valenceRange = percentage * (maxValence - minValence);
         const tempoRange = percentage * (maxTempo - minTempo);
         const duration_msRange = percentage * (maxDuration_ms - minDuration_ms);
-        const time_signatureRange = percentage * (maxTime_signature - minTime_signature);
         const chorus_hitRange = percentage * (maxChorus_hit - minChorus_hit);
         const sectionsRange = percentage * (maxSections - minSections);
 
@@ -185,9 +183,9 @@ d3.json(url).then(data => {
         const filteredData = data.filter(song => {
             const danceabilityMatch = !danceabilityFilterOn || (Math.abs(song.danceability - selectedDanceability) <= danceabilityRange);
             const energyMatch = !energyFilterOn || (Math.abs(song.energy - selectedEnergy) <= energyRange);
-            const keyMatch = !keyFilterOn || (Math.abs(song.key - selectedKey) <= keyRange);
+            const keyMatch = !keyFilterOn || (song.key = selectedKey);
             const loudnessMatch = !loudnessFilterOn || (Math.abs(song.loudness - selectedLoudness) <= loudnessRange);
-            const modeMatch = !modeFilterOn || (Math.abs(song.mode - selectedMode) <= modeRange);
+            const modeMatch = !modeFilterOn || (song.mode = selectedMode);
             const speechinessMatch = !speechinessFilterOn || (Math.abs(song.speechiness - selectedSpeechiness) <= speechinessRange);
             const acousticnessMatch = !acousticnessFilterOn || (Math.abs(song.acousticness - selectedAcousticness) <= acousticnessRange);
             const instrumentalnessMatch = !instrumentalnessFilterOn || (Math.abs(song.instrumentalness - selectedInstrumentalness) <= instrumentalnessRange);
@@ -195,7 +193,7 @@ d3.json(url).then(data => {
             const valenceMatch = !valenceFilterOn || (Math.abs(song.valence - selectedValence) <= valenceRange);
             const tempoMatch = !tempoFilterOn || (Math.abs(song.tempo - selectedTempo) <= tempoRange);
             const duration_msMatch = !duration_msFilterOn || (Math.abs(song.duration_ms - selectedDuration_ms) <= duration_msRange);
-            const time_signatureMatch = !time_signatureFilterOn || (Math.abs(song.time_signature - selectedTime_signature) <= time_signatureRange);
+            const time_signatureMatch = !time_signatureFilterOn || (song.time_signature = selectedTime_signature);
             const chorus_hitMatch = !chorus_hitFilterOn || (Math.abs(song.chorus_hit - selectedChorus_hit) <= chorus_hitRange);
             const sectionsMatch = !sectionsFilterOn || (Math.abs(song.sections - selectedSections) <= sectionsRange);
         
@@ -207,57 +205,53 @@ d3.json(url).then(data => {
             const filteredSongsContainer = document.getElementById("filtered-songs");
             filteredSongsContainer.innerHTML = ""; // Clear previous content
 
-
             filteredData.forEach(song => {
                 const songDetails = document.createElement("div");
-                
-                // Use ternary operator to set content based on song.hit value
+                //check if song is a hit or not
                 const hitContent = song.hit === 0 ? "No =(" : (song.hit === 1 ? "Yes =)" : "Unknown");
             
                 songDetails.innerHTML = `
-                    <p>Artist: ${song.artist}</p>
+                    <h4 style="background-color:Orange;">Artist: ${song.artist}</h4>
                     <p>Track: ${song.track}</p>
                     <p>Hit: ${hitContent}</p>
                     <p>URL: <a href="${song.url}" target="_blank">${song.url}</a></p>
                 `;
-                
                 filteredSongsContainer.appendChild(songDetails);
             });
-
         };
 
-    // Add event listeners to all sliders and checkboxes
-    danceabilitySlider.addEventListener("input", handleSliderChange);
-    energySlider.addEventListener("input", handleSliderChange);
-    keySlider.addEventListener("input", handleSliderChange);
-    loudnessSlider.addEventListener("input", handleSliderChange);
-    modeSlider.addEventListener("input", handleSliderChange);
-    speechinessSlider.addEventListener("input", handleSliderChange);
-    acousticnessSlider.addEventListener("input", handleSliderChange);
-    instrumentalnessSlider.addEventListener("input", handleSliderChange);
-    livenessSlider.addEventListener("input", handleSliderChange);
-    valenceSlider.addEventListener("input", handleSliderChange);
-    tempoSlider.addEventListener("input", handleSliderChange);
-    duration_msSlider.addEventListener("input", handleSliderChange);
-    time_signatureSlider.addEventListener("input", handleSliderChange);
-    chorus_hitSlider.addEventListener("input", handleSliderChange);
-    sectionsSlider.addEventListener("input", handleSliderChange);
+    // Event listener for selectors changes
+    danceabilitySlider.addEventListener("input", handleSelectorChange);
+    energySlider.addEventListener("input", handleSelectorChange);
+    keyDropdown.addEventListener("change", handleSelectorChange);
+    loudnessSlider.addEventListener("input", handleSelectorChange);
+    modeDropdown.addEventListener("change", handleSelectorChange);
+    speechinessSlider.addEventListener("input", handleSelectorChange);
+    acousticnessSlider.addEventListener("input", handleSelectorChange);
+    instrumentalnessSlider.addEventListener("input", handleSelectorChange);
+    livenessSlider.addEventListener("input", handleSelectorChange);
+    valenceSlider.addEventListener("input", handleSelectorChange);
+    tempoSlider.addEventListener("input", handleSelectorChange);
+    duration_msSlider.addEventListener("input", handleSelectorChange);
+    timeSignatureDropdown.addEventListener("change", handleSelectorChange);
+    chorus_hitSlider.addEventListener("input", handleSelectorChange);
+    sectionsSlider.addEventListener("input", handleSelectorChange);
 
-    document.getElementById("danceability-filter").addEventListener("change", handleSliderChange);
-    document.getElementById("energy-filter").addEventListener("change", handleSliderChange);
-    document.getElementById("key-filter").addEventListener("change", handleSliderChange);
-    document.getElementById("loudness-filter").addEventListener("change", handleSliderChange);
-    document.getElementById("mode-filter").addEventListener("change", handleSliderChange);
-    document.getElementById("speechiness-filter").addEventListener("change", handleSliderChange);
-    document.getElementById("acousticness-filter").addEventListener("change", handleSliderChange);
-    document.getElementById("instrumentalness-filter").addEventListener("change", handleSliderChange);
-    document.getElementById("liveness-filter").addEventListener("change", handleSliderChange);
-    document.getElementById("valence-filter").addEventListener("change", handleSliderChange);
-    document.getElementById("tempo-filter").addEventListener("change", handleSliderChange);
-    document.getElementById("duration_ms-filter").addEventListener("change", handleSliderChange);
-    document.getElementById("time_signature-filter").addEventListener("change", handleSliderChange);
-    document.getElementById("chorus_hit-filter").addEventListener("change", handleSliderChange);
-    document.getElementById("sections-filter").addEventListener("change", handleSliderChange);
+    document.getElementById("danceability-filter").addEventListener("change", handleSelectorChange);
+    document.getElementById("energy-filter").addEventListener("change", handleSelectorChange);
+    document.getElementById("key-filter").addEventListener("change", handleSelectorChange);
+    document.getElementById("loudness-filter").addEventListener("change", handleSelectorChange);
+    document.getElementById("mode-filter").addEventListener("change", handleSelectorChange);
+    document.getElementById("speechiness-filter").addEventListener("change", handleSelectorChange);
+    document.getElementById("acousticness-filter").addEventListener("change", handleSelectorChange);
+    document.getElementById("instrumentalness-filter").addEventListener("change", handleSelectorChange);
+    document.getElementById("liveness-filter").addEventListener("change", handleSelectorChange);
+    document.getElementById("valence-filter").addEventListener("change", handleSelectorChange);
+    document.getElementById("tempo-filter").addEventListener("change", handleSelectorChange);
+    document.getElementById("duration_ms-filter").addEventListener("change", handleSelectorChange);
+    document.getElementById("time_signature-filter").addEventListener("change", handleSelectorChange);
+    document.getElementById("chorus_hit-filter").addEventListener("change", handleSelectorChange);
+    document.getElementById("sections-filter").addEventListener("change", handleSelectorChange);
 
 }).catch(error => {
     console.error("Error fetching data:", error);

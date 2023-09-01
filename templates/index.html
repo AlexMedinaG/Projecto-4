@@ -6,7 +6,8 @@
     <title>Document</title>
     <script src="https://d3js.org/d3.v7.min.js"></script>
     <link rel="stylesheet" href="../static/style.css"> <!-- Link to your external CSS file -->
-
+    <span id="value-label"></span>
+    
 </head>
 <body>
 
@@ -14,49 +15,50 @@
         <div class="form-container">
             <h1>Hit predictor</h1>
 
-            <p>danceability</p><input type="checkbox" id="danceability-filter">
+            
+            <p>danceability</p><input type="checkbox" id="danceability-filter" checked>
             <input type="range" id="danceability-slider">
         
-            <p>energy</p><input type="checkbox" id="energy-filter">
+            <p>energy</p><input type="checkbox" id="energy-filter" checked>
             <input type="range" id="energy-slider">
         
-            <p>key</p><input type="checkbox" id="key-filter">
-            <input type="range" id="key-slider">
+            <p>key</p><input type="checkbox" id="key-filter" checked>
+            <select id="key-dropdown"></select> 
         
-            <p>loudness</p><input type="checkbox" id="loudness-filter">
+            <p>loudness</p><input type="checkbox" id="loudness-filter" checked>
             <input type="range" id="loudness-slider">
         
-            <p>mode</p><input type="checkbox" id="mode-filter">
-            <input type="range" id="mode-slider">
+            <p>mode</p><input type="checkbox" id="mode-filter" checked>
+            <select id="mode-dropdown"></select>
         
-            <p>speechiness</p><input type="checkbox" id="speechiness-filter">
+            <p>speechiness</p><input type="checkbox" id="speechiness-filter" checked>
             <input type="range" id="speechiness-slider">
         
-            <p>acousticness</p><input type="checkbox" id="acousticness-filter">
+            <p>acousticness</p><input type="checkbox" id="acousticness-filter" checked>
             <input type="range" id="acousticness-slider">
         
-            <p>instrumentalness</p><input type="checkbox" id="instrumentalness-filter">
+            <p>instrumentalness</p><input type="checkbox" id="instrumentalness-filter" checked>
             <input type="range" id="instrumentalness-slider">
         
-            <p>liveness</p><input type="checkbox" id="liveness-filter">
+            <p>liveness</p><input type="checkbox" id="liveness-filter" checked>
             <input type="range" id="liveness-slider">
         
-            <p>valence</p><input type="checkbox" id="valence-filter">
+            <p>valence</p><input type="checkbox" id="valence-filter" checked>
             <input type="range" id="valence-slider">
         
-            <p>tempo</p><input type="checkbox" id="tempo-filter">
+            <p>tempo</p><input type="checkbox" id="tempo-filter" checked>
             <input type="range" id="tempo-slider">
         
-            <p>duration_ms</p><input type="checkbox" id="duration_ms-filter">
+            <p>duration_ms</p><input type="checkbox" id="duration_ms-filter" checked>
             <input type="range" id="duration_ms-slider">
         
-            <p>time_signature</p><input type="checkbox" id="time_signature-filter">
-            <input type="range" id="time_signature-slider">
+            <p>time_signature</p><input type="checkbox" id="time_signature-filter" checked>
+            <select id="time_signature-dropdown"></select>
         
-            <p>chorus_hit</p><input type="checkbox" id="chorus_hit-filter">
+            <p>chorus_hit</p><input type="checkbox" id="chorus_hit-filter" checked>
             <input type="range" id="chorus_hit-slider">
         
-            <p>sections</p><input type="checkbox" id="sections-filter">
+            <p>sections</p><input type="checkbox" id="sections-filter" checked>
             <input type="range" id="sections-slider">
         
         </div>

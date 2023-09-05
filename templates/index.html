@@ -3,67 +3,104 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <script src="https://d3js.org/d3.v7.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="../static/style.css"> <!-- Link to your external CSS file -->
-    <span id="value-label"></span>
+    
     
 </head>
 <body>
 
     <div class="container">
-        <div class="form-container">
-            <h1>Hit predictor</h1>
-
+        <div class="row">
+            <div style="background-color:rgb(61, 64, 91);" class="col-md-12 jumbotron text-center">
+                <h1  style="color: rgb(244, 241, 222);">Hit predictor</h1>
+                <p style="color: rgb(244, 241, 222);">With the sliders you will be able to filter songs with specific features</p>
+              </div>
             
-            <p>danceability</p><input type="checkbox" id="danceability-filter" checked>
-            <input type="range" id="danceability-slider">
-        
-            <p>energy</p><input type="checkbox" id="energy-filter" checked>
-            <input type="range" id="energy-slider">
-        
-            <p>key</p><input type="checkbox" id="key-filter" checked>
-            <select id="key-dropdown"></select> 
-        
-            <p>loudness</p><input type="checkbox" id="loudness-filter" checked>
-            <input type="range" id="loudness-slider">
-        
-            <p>mode</p><input type="checkbox" id="mode-filter" checked>
-            <select id="mode-dropdown"></select>
-        
-            <p>speechiness</p><input type="checkbox" id="speechiness-filter" checked>
-            <input type="range" id="speechiness-slider">
-        
-            <p>acousticness</p><input type="checkbox" id="acousticness-filter" checked>
-            <input type="range" id="acousticness-slider">
-        
-            <p>instrumentalness</p><input type="checkbox" id="instrumentalness-filter" checked>
-            <input type="range" id="instrumentalness-slider">
-        
-            <p>liveness</p><input type="checkbox" id="liveness-filter" checked>
-            <input type="range" id="liveness-slider">
-        
-            <p>valence</p><input type="checkbox" id="valence-filter" checked>
-            <input type="range" id="valence-slider">
-        
-            <p>tempo</p><input type="checkbox" id="tempo-filter" checked>
-            <input type="range" id="tempo-slider">
-        
-            <p>duration_ms</p><input type="checkbox" id="duration_ms-filter" checked>
-            <input type="range" id="duration_ms-slider">
-        
-            <p>time_signature</p><input type="checkbox" id="time_signature-filter" checked>
-            <select id="time_signature-dropdown"></select>
-        
-            <p>chorus_hit</p><input type="checkbox" id="chorus_hit-filter" checked>
-            <input type="range" id="chorus_hit-slider">
-        
-            <p>sections</p><input type="checkbox" id="sections-filter" checked>
-            <input type="range" id="sections-slider">
-        
-        </div>
-        <div class="songs-container" id="filtered-songs">
 
+            <div class="col-md-4">
+
+                <div  style="border-color: rgb(224, 122, 95);" class="panel panel-primary">
+                    <div style="background-color:rgb(224, 122, 95);" style="border-color: rgb(224, 122, 95);" class="panel-heading">
+                        <h3 class="panel-title">Have fun with the filters!</h3>
+                    </div>
+
+                    <h4 class="text-center" style="background-color: rgb(244, 241, 222);">Danceability</h4>
+                    <input type="checkbox" id="danceability-filter" checked>
+                    <input type="range" id="danceability-slider">
+        
+                    <h4 class="text-center" style="background-color: rgb(244, 241, 222);">Energy</h4>
+                    <input type="checkbox" id="energy-filter" checked>
+                    <input type="range" id="energy-slider">
+        
+                    <h4 class="text-center" style="background-color: rgb(244, 241, 222);">Key</h4>
+                    <input type="checkbox" id="key-filter" checked>
+                    <select id="key-dropdown"></select> 
+        
+                    <h4 class="text-center" style="background-color: rgb(244, 241, 222);">Loudness</h4>
+                    <input type="checkbox" id="loudness-filter" checked>
+                    <input type="range" id="loudness-slider">
+        
+                    <h4 class="text-center" style="background-color: rgb(244, 241, 222);">Mode</h4>
+                    <input type="checkbox" id="mode-filter" checked>
+                    <select id="mode-dropdown"></select>
+        
+                    <h4 class="text-center" style="background-color: rgb(244, 241, 222);">Speechiness</h4>
+                    <input type="checkbox" id="speechiness-filter" checked>
+                    <input type="range" id="speechiness-slider">
+        
+                    <h4 class="text-center" style="background-color: rgb(244, 241, 222);">Acousticness</h4>
+                    <input type="checkbox" id="acousticness-filter" checked>
+                    <input type="range" id="acousticness-slider">
+        
+                    <h4 class="text-center" style="background-color: rgb(244, 241, 222);">Instrumentalness</h4>
+                    <input type="checkbox" id="instrumentalness-filter" checked>
+                    <input type="range" id="instrumentalness-slider">
+        
+                    <h4 class="text-center" style="background-color: rgb(244, 241, 222);">Liveness</h4>
+                    <input type="checkbox" id="liveness-filter" checked>
+                    <input type="range" id="liveness-slider">
+        
+                    <h4 class="text-center" style="background-color: rgb(244, 241, 222);">Valence</h4>
+                    <input type="checkbox" id="valence-filter" checked>
+                    <input type="range" id="valence-slider">
+        
+                    <h4 class="text-center" style="background-color: rgb(244, 241, 222);">Tempo</h4>
+                    <input type="checkbox" id="tempo-filter" checked>
+                    <input type="range" id="tempo-slider">
+        
+                    <h4 class="text-center" style="background-color: rgb(244, 241, 222);">Duration</h4>
+                    <input type="checkbox" id="duration_ms-filter" checked>
+                    <input type="range" id="duration_ms-slider">
+        
+                    <h4 class="text-center" style="background-color: rgb(244, 241, 222);">Time signature</h4>
+                    <input type="checkbox" id="time_signature-filter" checked>
+                    <select id="time_signature-dropdown"></select>
+        
+                    <h4 class="text-center" style="background-color: rgb(244, 241, 222);">Chorus hit</h4>
+                    <input type="checkbox" id="chorus_hit-filter" checked>
+                    <input type="range" id="chorus_hit-slider">
+        
+                    <h4 class="text-center" style="background-color: rgb(244, 241, 222);">Sections</h4>
+                    <input type="checkbox" id="sections-filter" checked>
+                    <input type="range" id="sections-slider">
+            </div>
+        </div>
+        
+          <div class="col-md-5">
+            <div style="background-color:rgb(129, 178, 154);" class="well">
+                <h4 class="text-center" style="color: rgb(61, 64, 91);">Filter values</h4>
+                <span id="value-label"></span>
+                </div>
+            <div id="filtered-songs"></div>
+
+          </div>
+        
+        
+        
         </div>
     </div>
 

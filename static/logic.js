@@ -20,10 +20,10 @@ const timeSignatureDropdown = document.getElementById("time_signature-dropdown")
 const chorus_hitSlider = document.getElementById("chorus_hit-slider");
 const sectionsSlider = document.getElementById("sections-slider");
 const valueLabel = document.getElementById("value-label");
-valueLabel.textContent = `Danceability: ${danceabilitySlider.value}, Energy: ${energySlider.value}, Key: ${keyDropdown.value}, Loudness: ${loudnessSlider.value}, 
-Mode: ${modeDropdown.value}, Speechiness: ${speechinessSlider.value}, Acousticness: ${acousticnessSlider.value}, Instrumentalness: ${instrumentalnessSlider.value},
-Liveness: ${livenessSlider.value}, Mode: ${valenceSlider.value}, Speechiness: ${tempoSlider.value}, Acousticness: ${duration_msSlider.value},
-Time_signature: ${timeSignatureDropdown.value}, Chorus_hit: ${chorus_hitSlider.value}, Sections: ${sectionsSlider.value}`;
+valueLabel.textContent = `Danceability: ${danceabilitySlider.value} | Energy: ${energySlider.value} | Key: ${keyDropdown.value} | Loudness: ${loudnessSlider.value} |
+Mode: ${modeDropdown.value} | Speechiness: ${speechinessSlider.value} | Acousticness: ${acousticnessSlider.value} | Instrumentalness: ${instrumentalnessSlider.value} |
+Liveness: ${livenessSlider.value} | Mode: ${valenceSlider.value} | Speechiness: ${tempoSlider.value} | Acousticness: ${duration_msSlider.value} |
+Time_signature: ${timeSignatureDropdown.value} | Chorus_hit: ${chorus_hitSlider.value} | Sections: ${sectionsSlider.value}`;
 
 // Fetch data using D3.json
 d3.json(url).then(data => {
@@ -163,7 +163,7 @@ d3.json(url).then(data => {
         const selectedChorus_hit = parseFloat(chorus_hitSlider.value);
         const selectedSections = parseFloat(sectionsSlider.value);
     
-        valueLabel.textContent = `Danceability: ${selectedDanceability}, Energy: ${selectedEnergy}, Key: ${selectedKey}, Loudness: ${selectedLoudness}, Mode: ${selectedMode}, Speechiness: ${selectedSpeechiness}, Acousticness: ${selectedAcousticness}, Instrumentalness: ${selectedInstrumentalness}, Liveness: ${selectedLiveness}, Valence: ${selectedValence}, Tempo: ${selectedTempo}, Duration_ms: ${selectedDuration_ms}, Time_signature: ${selectedTime_signature}, Chorus_hit: ${selectedChorus_hit}, Sections: ${selectedSections}`;
+        valueLabel.textContent = `Danceability: ${selectedDanceability} | Energy: ${selectedEnergy} | Key: ${selectedKey} | Loudness: ${selectedLoudness} | Mode: ${selectedMode} | Speechiness: ${selectedSpeechiness} | Acousticness: ${selectedAcousticness} | Instrumentalness: ${selectedInstrumentalness} | Liveness: ${selectedLiveness} | Valence: ${selectedValence} | Tempo: ${selectedTempo} | Duration_ms: ${selectedDuration_ms} | Time_signature: ${selectedTime_signature} | Chorus_hit: ${selectedChorus_hit} | Sections: ${selectedSections}`;
 
         // Calculate the ranges based on percentage
         const danceabilityRange = percentage * (maxDanceability - minDanceability);
@@ -211,7 +211,7 @@ d3.json(url).then(data => {
                 const hitContent = song.hit === 0 ? "No =(" : (song.hit === 1 ? "Yes =)" : "Unknown");
             
                 songDetails.innerHTML = `
-                    <h4 style="background-color:Orange;">Artist: ${song.artist}</h4>
+                    <h4 style="background-color: rgb(242, 204, 143);">Artist: ${song.artist}</h4>
                     <p>Track: ${song.track}</p>
                     <p>Hit: ${hitContent}</p>
                     <p>URL: <a href="${song.url}" target="_blank">${song.url}</a></p>

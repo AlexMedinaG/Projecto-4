@@ -22,7 +22,7 @@ const sectionsSlider = document.getElementById("sections-slider");
 const valueLabel = document.getElementById("value-label");
 valueLabel.textContent = `Danceability: ${danceabilitySlider.value} | Energy: ${energySlider.value} | Key: ${keyDropdown.value} | Loudness: ${loudnessSlider.value} |
 Mode: ${modeDropdown.value} | Speechiness: ${speechinessSlider.value} | Acousticness: ${acousticnessSlider.value} | Instrumentalness: ${instrumentalnessSlider.value} |
-Liveness: ${livenessSlider.value} | Mode: ${valenceSlider.value} | Speechiness: ${tempoSlider.value} | Acousticness: ${duration_msSlider.value} |
+Liveness: ${livenessSlider.value} | Valence: ${valenceSlider.value} | Tempo: ${tempoSlider.value} | Duration_ms: ${duration_msSlider.value} |
 Time_signature: ${timeSignatureDropdown.value} | Chorus_hit: ${chorus_hitSlider.value} | Sections: ${sectionsSlider.value}`;
 
 // Fetch data using D3.json
@@ -256,3 +256,47 @@ d3.json(url).then(data => {
 }).catch(error => {
     console.error("Error fetching data:", error);
 });
+
+function predict() {
+    // Get the input values from the sliders and dropdowns
+    const input_data = {
+        danceability: parseFloat(danceabilitySlider.value),
+        energy: parseFloat(energySlider.value),
+        key: parseFloat(keyDropdown.value),
+        loudness: parseFloat(loudnessSlider.value),
+        mode: parseFloat(modeDropdown.value),
+        speechiness: parseFloat(speechinessSlider.value),
+        acousticness: parseFloat(acousticnessSlider.value),
+        instrumentalness: parseFloat(instrumentalnessSlider.value),
+        liveness: parseFloat(livenessSlider.value),
+        valence: parseFloat(valenceSlider.value),
+        tempo: parseFloat(tempoSlider.value),
+        duration_ms: parseFloat(duration_msSlider.value),
+        time_signature: parseFloat(timeSignatureDropdown.value),
+        chorus_hit: parseFloat(chorus_hitSlider.value),
+        sections: parseFloat(sectionsSlider.value)
+    };
+
+    // Log the input_data to the console for debugging
+    console.log("Input Data:", input_data);
+
+    // Send a POST request to the Flask API for prediction
+    $.ajax({
+        type: 'POST',
+        url: 'http://127.0.0.1:5503/predict',
+        data: JSON.stringify(input_data), 
+        contentType: 'application/json',
+        dataType: 'json',
+        success: function(response) {
+            // Display the response in the HTML element with id "prediction-result"
+            const predictionResultElement = document.getElementById("prediction-result");
+        
+            // Check the response for the prediction value
+            if (response && response.prediction) {
+                predictionResultElement.textContent = "Prediction: " + response.prediction;
+            } else {
+                predictionResultElement.textContent = "Prediction not available.";
+            }
+        }
+    });
+}

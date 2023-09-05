@@ -8,6 +8,7 @@
     <script src="https://d3js.org/d3.v7.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="../static/style.css"> <!-- Link to your external CSS file -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     
     
 </head>
@@ -87,6 +88,8 @@
                     <h4 class="text-center" style="background-color: rgb(244, 241, 222);">Sections</h4>
                     <input type="checkbox" id="sections-filter" checked>
                     <input type="range" id="sections-slider">
+
+                    <button type="button" onclick="predict()" style="background-color: rgb(224, 122, 95);">Predict</button>
             </div>
         </div>
         
@@ -94,6 +97,7 @@
             <div style="background-color:rgb(129, 178, 154);" class="well">
                 <h4 class="text-center" style="color: rgb(61, 64, 91);">Filter values</h4>
                 <span id="value-label"></span>
+                <div id="prediction-result" style="background-color: rgb(224, 122, 95);"></div>
                 </div>
             <div id="filtered-songs"></div>
 

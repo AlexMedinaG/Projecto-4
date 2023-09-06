@@ -25,6 +25,7 @@ The variables contained in the data set are:
 - Change decade variable to integer
 - Revised data types to ensure we could work with the information
 - Reviewd that there where no NA
+- Converted Duration in miliseconds (ms) to minutes
 - Droped Categorical Data
 - Trained using - Test Split
 

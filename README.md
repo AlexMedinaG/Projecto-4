@@ -1,5 +1,8 @@
 # Proyect 4: Spotify hit predictor
 
+link to presentation:
+https://www.canva.com/design/DAFtiKpTyWM/kKrdtIOxYsUkjBtKR6mWRw/edit?utm_content=DAFtiKpTyWM&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton
+
 ## Introduction
 
 This dataset consists of features for tracks fetched using Spotify's Web API. The tracks are labeled '1' or '0' ('Hit' or 'Flop'). It has 20 columns and 41,160 rows.

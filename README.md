@@ -16,20 +16,20 @@ The variables contained in the data set are:
 - Valence: the musical positiveness conveyed by a track
 
 ## Data Preporcessing
-We merged 6 csv files with information from the 60's until 2010´s 
 
+- We merged 6 csv files with information from the 60's until 2010´s 
+- We renamed columns to make it more clear and easy to follow
+- Change decade variable to integer
+- Revised data types to ensure we could work with the information
+- Reviewd that there where no NA
+- Droped Categorical Data
+- Trained using - Test Split
 
 ## Selecting the Model
 
 We evalauted the accuracy of different models to identify the ones with the highest scores: 
 
-                  K-Nearest Neighbors: 74.09%
-                         Decision Tree: 70.01%
-Support Vector Machine (Linear Kernel): 72.88%
-   Support Vector Machine (RBF Kernel): 76.35%
-                        Neural Network: 78.00%
-                         Random Forest: 78.58%
-                     Gradient Boosting: 77.60%
+![Alt Text](images/models_scores.png)
 
 Random Forest and Neural Network where the models showing the greatest accuracy. We went with randmo Forest given the accuracy and simplicity vs. Neayral Networks
 
@@ -63,7 +63,9 @@ In order to understand the dtaa distribution we performed several analysis in th
 #### Visualizing correlations between features
 ![Alt Text](images/correlation_heatmap.png)
 
-### Databae:
+To do this visualizations we used a code shared within kaggle by ASHOK ARORA that presented a very useful and quick way visualize the data in the code
+
+### Databae and Predictor:
 We used Mongo DB for the database.
 
 We developed a web based Hit Predictor where you can play with the different variables to identify whic combination can determine if a song with such characteristics will be a Hit or not. 
